@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Head Tracking Panorama HZO</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- MediaPipe -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+</head>
+
+<body>
+
+  <!-- Hidden webcam -->
+  <video id="video" autoplay playsinline></video>
+
+  <!-- Menu -->
+  <div id="menu" class="start-menu">
+    <button onclick="loadPanorama('daysky')">Day Sky</button>
+    <button onclick="loadPanorama('nightsky')">Night Sky</button>
+    <button onclick="loadPanorama('snow')">Snow</button>
+    <button onclick="loadPanorama('studioroom')">Studio</button>
+    <button onclick="loadPanorama('urban')">Urban</button>
+  </div>
+
+  <div id="info">
+    Move your head to look around!
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: black;
+  font-family: Arial;
+}
+
+/* Hidden webcam */
+video {
+  display: none;
+}
+
+/* Info text */
+#info {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  z-index: 100;
+  font-size: 24px;
+}
+
+/* START MENU */
+.start-menu {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  z-index: 100;
+}
+
+/* BOTTOM MENU */
+.bottom-menu {
+  position: absolute;
+
+  bottom: 20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+
+  z-index: 100;
+}
+
+button {
+  padding: 18px 40px;
+  font-size: 24px;
+
+  border: none;
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  background: rgba(255,255,255,0.9);
+
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
