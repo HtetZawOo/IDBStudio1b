@@ -16,7 +16,9 @@ let smoothPitch = 0;
 
 // ⚙️ tuning
 const smoothFactor = 0.06;
-const rotationStrength = 7.5;
+let baseRotationStrength = 7.0;
+let strengthLevel = 0; // -10 to +10
+let rotationStrength = baseRotationStrength;
 
 init();
 animate();
@@ -127,6 +129,8 @@ function loadPanorama(type) {
     menu.classList.remove("start-menu");
 
     menu.classList.add("bottom-menu");
+
+    document.getElementById("strengthControls").style.display = "flex";
   }
 }
 
@@ -231,5 +235,28 @@ function onWindowResize() {
   renderer.setSize(
     window.innerWidth,
     window.innerHeight
+  );
+}
+
+function changeStrength(direction) {
+
+  const newLevel = strengthLevel + direction;
+
+  // clamp between -10 and +10
+  if (newLevel < -10 || newLevel > 10) return;
+
+  strengthLevel = newLevel;
+
+  rotationStrength =
+    baseRotationStrength + (strengthLevel * 0.5);
+
+  document.getElementById("strengthDisplay").innerText =
+    strengthLevel > 0
+      ? "+" + strengthLevel
+      : strengthLevel;
+
+  console.log(
+    "Rotation strength:",
+    rotationStrength
   );
 }
