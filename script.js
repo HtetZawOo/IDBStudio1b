@@ -16,7 +16,7 @@ let smoothPitch = 0;
 
 // ⚙️ tuning
 const smoothFactor = 0.06;
-const rotationStrength = 6.5;
+const rotationStrength = 7.5;
 
 init();
 animate();
