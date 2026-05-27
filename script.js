@@ -6,26 +6,26 @@ let currentMaterial;
 
 let started = false;
 
-// target rotation
+// Target Rotation
 let targetYaw = 0;
 let targetPitch = 0;
 
-// smoothed rotation
+// Smoothed Rotation
 let smoothYaw = 0;
 let smoothPitch = 0;
 
-// tuning
+// Tuning
 const smoothFactor = 0.06;
 let baseRotationStrength = 7.0;
 let strengthLevel = 0; // -10 to +10
 let rotationStrength = baseRotationStrength;
 
-init();
-animate();
+setup();
+animateLoop();
 
-// INIT
+// Setup
 
-function init() {
+function setup() {
 
   scene = new THREE.Scene();
 
@@ -45,7 +45,7 @@ function init() {
 
   scene.add(yawObject);
 
-  // renderer
+  // Renderer
   renderer = new THREE.WebGLRenderer({
     antialias: true
   });
@@ -56,7 +56,7 @@ function init() {
 
   document.body.appendChild(renderer.domElement);
 
-  // sphere
+  // Sphere
   const geometry = new THREE.SphereGeometry(500, 60, 40);
 
   geometry.scale(-1, 1, 1);
@@ -115,7 +115,7 @@ function loadPanorama(type) {
     currentMaterial.needsUpdate = true;
   });
 
-  // start head tracking once
+  // Start Head Tracking once
   if (!started) {
 
     started = true;
@@ -168,7 +168,7 @@ function startHeadTracking() {
   cam.start();
 }
 
-// face results
+// Face Results
 
 function onFaceResults(results) {
 
@@ -176,37 +176,37 @@ function onFaceResults(results) {
 
   const landmarks = results.multiFaceLandmarks[0];
 
-  // nose landmark
+  // Nose Landmark
   const nose = landmarks[1];
 
-  // normalized center offset
+  // Normalized Center Offset
   const dx = nose.x - 0.5;
   const dy = nose.y - 0.5;
 
-  // convert to rotation targets
+  // Convert to Rotation Targets
   targetYaw = dx * rotationStrength;
   targetPitch = -dy * rotationStrength;
 }
 
 // Animation
 
-function animate() {
+function animateLoop() {
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateLoop);
 
-  // smoothing
+  // Smoothing
   smoothYaw +=
     (targetYaw - smoothYaw) * smoothFactor;
 
   smoothPitch +=
     (targetPitch - smoothPitch) * smoothFactor;
 
-  // apply rotation
+  // Apply Rotation
   yawObject.rotation.y = smoothYaw;
 
   pitchObject.rotation.x = smoothPitch;
 
-  // clamp vertical
+  // Clamp Vertical
   pitchObject.rotation.x = Math.max(
     -Math.PI / 3,
     Math.min(Math.PI / 3,
@@ -217,9 +217,8 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-// ==========================
-// 📱 RESIZE
-// ==========================
+// Resize
+
 function onWindowResize() {
 
   camera.aspect =
@@ -237,7 +236,7 @@ function changeStrength(direction) {
 
   const newLevel = strengthLevel + direction;
 
-  // clamp between -10 and +10
+  // Clamp between -10 and +10
   if (newLevel < -10 || newLevel > 10) return;
 
   strengthLevel = newLevel;
