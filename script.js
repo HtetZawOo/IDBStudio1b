@@ -6,15 +6,15 @@ let currentMaterial;
 
 let started = false;
 
-// 🎯 target rotation
+// target rotation
 let targetYaw = 0;
 let targetPitch = 0;
 
-// 🧊 smoothed rotation
+// smoothed rotation
 let smoothYaw = 0;
 let smoothPitch = 0;
 
-// ⚙️ tuning
+// tuning
 const smoothFactor = 0.06;
 let baseRotationStrength = 7.0;
 let strengthLevel = 0; // -10 to +10
@@ -23,9 +23,8 @@ let rotationStrength = baseRotationStrength;
 init();
 animate();
 
-// ==========================
-// 🎬 INIT
-// ==========================
+// INIT
+
 function init() {
 
   scene = new THREE.Scene();
@@ -83,9 +82,8 @@ function init() {
   );
 }
 
-// ==========================
-// 🌍 LOAD PANORAMA
-// ==========================
+// Load Panorama
+
 function loadPanorama(type) {
 
   const panoramas = {
@@ -134,9 +132,8 @@ function loadPanorama(type) {
   }
 }
 
-// ==========================
-// 👤 HEAD TRACKING
-// ==========================
+// Head Tracking
+
 function startHeadTracking() {
 
   const video = document.getElementById("video");
@@ -171,9 +168,8 @@ function startHeadTracking() {
   cam.start();
 }
 
-// ==========================
-// 🧠 FACE RESULTS
-// ==========================
+// face results
+
 function onFaceResults(results) {
 
   if (!results.multiFaceLandmarks.length) return;
@@ -192,9 +188,8 @@ function onFaceResults(results) {
   targetPitch = -dy * rotationStrength;
 }
 
-// ==========================
-// 🔄 ANIMATION
-// ==========================
+// Animation
+
 function animate() {
 
   requestAnimationFrame(animate);

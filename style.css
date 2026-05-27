@@ -5,12 +5,12 @@ body {
   font-family: Arial;
 }
 
-/* Hidden webcam */
+/* Hidden Webcam */
 video {
   display: none;
 }
 
-/* Info text */
+/* Info Text */
 #info {
   position: absolute;
   top: 20px;
@@ -21,7 +21,7 @@ video {
   font-size: 24px;
 }
 
-/* START MENU */
+/* Start Menu */
 .start-menu {
   position: absolute;
 
@@ -37,7 +37,7 @@ video {
   z-index: 100;
 }
 
-/* BOTTOM MENU */
+/* Bottom Menu */
 .bottom-menu {
   position: absolute;
 
